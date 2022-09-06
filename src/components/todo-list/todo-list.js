@@ -7,6 +7,11 @@ import './todo-list.css'
 
 export default class TodoList extends Component {
 
+    constructor(props) {
+        super(props);
+        this.taskList = React.createRef();
+    }
+
     state = {
         dragElement: document.getElementById('root')
     }
@@ -33,49 +38,53 @@ export default class TodoList extends Component {
         const onDragOver = (ev) => {
             ev.preventDefault();
 
-            const currentElement = ev.target;
+            const currentElement = ev.target.closest('li');
 
-            if (currentElement !== dragElement &&  currentElement.classList.contains("todo-list__item")) {
-                const list = document.getElementById('list');
+            if (currentElement !== dragElement ) {
+                const list = this.taskList.current;
                 const nextElement =
-                    (currentElement === dragElement.parentNode.nextSibling) ?
-                        currentElement.parentNode.nextSibling : currentElement.parentNode;
-
+                    (currentElement === dragElement.nextElementSibling) ?
+                        currentElement.nextElementSibling : currentElement;
                 list.insertBefore(dragElement, nextElement);
             }
         }
 
         const onDragStart = (ev) => {
-            ev.target.classList.add('selected');
+            const el = ev.target.closest('li');
+            el.classList.add('selected');
             this.setState({
-                dragElement: ev.target
-            })
-
+                dragElement: el
+            });
         }
 
         const onDragEnd = (ev) => {
-            ev.target.classList.remove('selected');
+            const el = ev.target.closest('li');
+            el.classList.remove('selected');
             this.setState({
                 dragElement: ""
-            })
+            });
         }
 
         return (
-            <ul
-                className="todo-list"
-                id="list"
-                onDragOver={onDragOver}
-                onDragStart={onDragStart}
-                onDragEnd={onDragEnd}
-            >
-                {elements}
+            <div className="todo-list">
+                <ul
+                    className="todo-list__list"
+                    id="list"
+                    ref={this.taskList}
+                    onDragOver={onDragOver}
+                    onDragStart={onDragStart}
+                    onDragEnd={onDragEnd}
+                >
+                    {elements}
+                </ul>
                 <TodoListFooter
                     toDo = { toDo }
                     filter = { filter }
                     onFilterChange = { onFilterChange }
                     clearCompleted = { clearCompleted }
                 />
-            </ul>
+            </div>
+
         );
     }
 }

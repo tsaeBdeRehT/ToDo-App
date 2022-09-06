@@ -1,0 +1,17 @@
+.todo-list__filter {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+.button {
+    background: transparent;
+    border: none;
+    font-family: 'Josefin Sans', sans-serif;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.button.active {
+    color: aqua;
+}

@@ -1,0 +1,62 @@
+.todo-list__item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid hsl(234, 11%, 52%);
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+
+}
+
+.item {
+    display: flex;
+    line-height: 1.7rem;
+}
+
+.item-check {
+    border: 1px solid whitesmoke;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.item.done .item-check{
+    background: linear-gradient(120deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.check-icon {
+    display: none;
+}
+
+.item.done .item-check .check-icon {
+    display: block;
+}
+
+.item-label {
+    cursor: pointer;
+}
+
+.item.done .item-label {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.item-remove {
+    display: none;
+
+}
+
+.todo-list__item:hover .item-remove {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: transparent;
+    border: none;
+}
+

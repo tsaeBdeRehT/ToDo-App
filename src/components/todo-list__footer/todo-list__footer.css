@@ -1,0 +1,13 @@
+.todo-list__footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    font-size: 14px;
+}
+
+.button {
+    border: none;
+    background: transparent;
+    font-family: 'Josefin Sans', sans-serif;
+    color: whitesmoke;
+}

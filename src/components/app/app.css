@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+.app {
+    height: 100vh;
+    font-family: 'Josefin Sans', sans-serif;
+    background-image: url("../../images/bg-desktop-dark.jpg");
+    background-repeat: no-repeat;
+    padding: 0rem 25rem;
+    background-color: hsl(235, 21%, 11%);
+    margin: auto;
+}

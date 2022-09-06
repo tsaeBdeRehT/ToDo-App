@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+}
+
+.header__name {
+    margin: 0;
+    color: whitesmoke;
+    font-size: 36px;
+    letter-spacing: 1rem;
+}
+
+.header__change-button {
+    cursor: pointer;
+}

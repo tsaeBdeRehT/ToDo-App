@@ -1,10 +1,21 @@
 .todo-list__item {
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid hsl(234, 11%, 52%);
-    color: whitesmoke;
+    border-radius: 0.3rem 0.3rem 0 0;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+}
+
+.dark .todo-list__item {
+    border-bottom: 1px solid hsl(234, 11%, 52%);
+    background-color: hsl(237, 14%, 26%);
+    color: hsl(236, 33%, 92%);
+}
+
+.light .todo-list__item {
+    border-bottom: 1px solid hsl(233, 11%, 84%);
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(235, 19%, 35%);
 }
 
 .item {
@@ -13,7 +24,6 @@
 }
 
 .item-check {
-    border: 1px solid whitesmoke;
     width: 1.4rem;
     height: 1.4rem;
     border-radius: 50%;
@@ -24,7 +34,23 @@
     cursor: pointer;
 }
 
-.item.done .item-check{
+.dark .item-check {
+    border: 1px solid hsl(234, 11%, 52%);
+}
+
+.dark .item-check:hover {
+    border: 1px solid hsl(233, 11%, 84%);
+}
+
+.light .item-check {
+    border: 1px solid hsl(236, 33%, 92%);
+}
+
+.light .item-check:hover {
+    border: 1px solid hsl(236, 9%, 61%);
+}
+
+.item.done .item-check {
     background: linear-gradient(120deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
@@ -42,7 +68,7 @@
 
 .item.done .item-label {
     text-decoration: line-through;
-    color: gray;
+    color: hsl(233, 11%, 84%);
 }
 
 .item-remove {
@@ -58,4 +84,6 @@
     background: transparent;
     border: none;
 }
+
+
 

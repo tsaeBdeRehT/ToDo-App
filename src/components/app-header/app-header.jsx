@@ -1,13 +1,19 @@
 import React from "react";
 
 import './app-header.css';
-import icon from '../../images/icon-sun.svg';
+import iconDark from '../../images/icon-moon.svg';
+import iconLight from '../../images/icon-sun.svg';
 
-const AppHeader = () => {
+const AppHeader = ({themeChange}) => {
     return (
         <div className="header">
             <h1 className="header__name">TODO</h1>
-            <div className="header__change-button"><img src={icon}/></div>
+            <button className="header__change-button"
+                    onClick={themeChange}
+            >
+                <img src={iconDark} className="moon"/>
+                <img src={iconLight} className="sun"/>
+            </button>
         </div>
 
     );

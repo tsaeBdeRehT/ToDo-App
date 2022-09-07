@@ -37,32 +37,7 @@ export default class TodoList extends Component {
             );
         });
 
-        const onDragOver = (ev) => {
-            ev.preventDefault();
 
-            const currentElement = ev.target.closest('li');
-
-
-            if (currentElement !== dragElement ) {
-
-                const nextElement =
-                    (currentElement === dragElement.nextElementSibling) ?
-                        currentElement.nextElementSibling : currentElement;
-
-            }
-        }
-
-
-
-        const onDragEnd = (result) => {
-            if (!result.destination){
-                return;
-            }
-
-            console.log(1);
-        }
-
-        const listTag = 'div'
 
         return (
             <div className="todo-list">
@@ -75,14 +50,6 @@ export default class TodoList extends Component {
                             {elements}
                             {provided.placeholder}
                         </ul>
-                        // <div
-                        //     className="todo-list__list"
-                        //     innerRef = {provided.innerRef}
-                        //     {...provided.droppableProps}
-                        // >
-                        //     {elements}
-                        //     {provided.placeholder}
-                        // </div>
                     )}
                 </Droppable>
                 <TodoListFooter

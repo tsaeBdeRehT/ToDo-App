@@ -21,7 +21,7 @@ export default class TodoListFilter extends Component{
             return (
                 <button
                     key={name}
-                    className={"button " + className}
+                    className={"filter-button " + className}
                     onClick={() => onFilterChange(name)}
                 >
                     {label}

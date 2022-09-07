@@ -1,9 +1,10 @@
-@media screen and (min-width: 749px){
+@media screen and (min-width: 1240px){
     .header {
         display: flex;
         justify-content: space-between;
         padding-top: 5rem;
         padding-bottom: 4rem;
+        user-select: none;
     }
 
     .header__name {
@@ -15,10 +16,12 @@
 
     .header__change-button {
         cursor: pointer;
+        background: transparent;
+        border: none;
     }
 }
 
-@media screen and (max-width: 749px){
+@media screen and (max-width: 1240px){
     .header {
         display: flex;
         justify-content: space-between;
@@ -34,9 +37,15 @@
     }
 
     .header__change-button {
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        background: transparent;
+        border: none;
     }
+}
+
+.dark .moon{
+    display: none;
+}
+
+.light .sun {
+    display: none;
 }

@@ -1,7 +1,5 @@
 .todo-list {
-    background-color: hsl(237, 14%, 26%);
     border-radius: 0.3rem;
-    color: whitesmoke;
     touch-action: none;
     user-select: none;
 }
@@ -14,4 +12,16 @@
 
 li {
     cursor: pointer;
+}
+
+.dark .todo-list {
+    background-color: hsl(237, 14%, 26%);
+    color: hsl(234, 11%, 52%);
+    box-shadow: 0 1rem 2.4rem -0.4rem black;
+}
+
+.light .todo-list {
+    background-color:  hsl(0, 0%, 98%);
+    color: hsl(235, 19%, 35%);
+    box-shadow: 0 1rem 2.4rem -0.4rem hsl(233, 11%, 84%);
 }

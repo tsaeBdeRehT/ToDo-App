@@ -1,20 +1,28 @@
-@media screen and (min-width: 749px){
+@media screen and (min-width: 1240px){
     .todo-list__filter {
         display: flex;
         justify-content: space-between;
         width: 35%;
     }
 
-    .button {
+    .filter-button {
         background: transparent;
         border: none;
         font-family: 'Josefin Sans', sans-serif;
-        color: whitesmoke;
+        font-weight: 700;
         cursor: pointer;
     }
 
-    .button.active {
-        color: aqua;
+    .dark .filter-button{
+        color: hsl(234, 11%, 52%);
+    }
+
+    .light .filter-button{
+        color: hsl(235, 19%, 35%);
+    }
+
+    .filter-button.active {
+        color: hsl(220, 98%, 61%);
     }
 
     .mobile {
@@ -22,18 +30,27 @@
     }
 }
 
-@media screen and (max-width: 749px){
+@media screen and (max-width: 1240px){
     .todo-list__filter {
         display: flex;
         justify-content: space-between;
-        background-color: hsl(237, 14%, 26%);
         height: 2.5rem;
         border-radius: 0.3rem;
         margin-top: 1rem;
-        padding: 0rem 4rem;
+        padding: 0 4rem;
     }
 
-    .button {
+    .dark .todo-list__filter {
+        background-color: hsl(237, 14%, 26%);
+        box-shadow: 0 1rem 2.4rem -0.4rem black;
+    }
+
+    .light .todo-list__filter {
+        background-color: hsl(0, 0%, 98%);
+        box-shadow: 0 1rem 2.4rem -0.4rem hsl(233, 11%, 84%);
+    }
+
+    .filter-button {
         background: transparent;
         border: none;
         font-family: 'Josefin Sans', sans-serif;
@@ -41,8 +58,16 @@
         cursor: pointer;
     }
 
-    .button.active {
-        color: aqua;
+    .dark .filter-button{
+        color: hsl(234, 11%, 52%);
+    }
+
+    .light .filter-button{
+        color: hsl(235, 19%, 35%);
+    }
+
+    .filter-button.active {
+        color: hsl(220, 98%, 61%);
     }
 
     .desktop {

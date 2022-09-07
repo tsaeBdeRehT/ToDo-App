@@ -1,4 +1,4 @@
-@media screen and (min-width: 749px){
+@media screen and (min-width: 1240px){
     .todo-list__footer {
         display: flex;
         justify-content: space-between;
@@ -10,11 +10,18 @@
         border: none;
         background: transparent;
         font-family: 'Josefin Sans', sans-serif;
-        color: whitesmoke;
+    }
+
+    .dark .button {
+        color: hsl(234, 11%, 52%);
+    }
+
+    .light .button {
+        color: hsl(235, 19%, 35%);
     }
 }
 
-@media screen and (max-width: 749px){
+@media screen and (max-width: 1240px){
     .todo-list__footer {
         display: flex;
         justify-content: space-between;
@@ -26,7 +33,14 @@
         border: none;
         background: transparent;
         font-family: 'Josefin Sans', sans-serif;
-        color: whitesmoke;
+    }
+
+    .dark .button {
+        color: hsl(234, 11%, 52%);
+    }
+
+    .light .button {
+        color: hsl(235, 19%, 35%);
     }
 
 }

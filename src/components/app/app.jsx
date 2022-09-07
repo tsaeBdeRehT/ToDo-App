@@ -29,6 +29,7 @@ export default class App extends Component {
         },
         todoData: { },
         filter: 'all',
+        theme: 'light'
     };
 
     deleteData = (id, column, filter) => {
@@ -262,16 +263,28 @@ export default class App extends Component {
 
     }
 
+    themeChange = () => {
+        this.setState(({theme}) => {
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            return{
+                theme: newTheme
+            }
+        })
+    }
+
+
     render() {
 
-        const {todoData, filter, column} = this.state;
+        const {todoData, filter, column, theme} = this.state;
         const {visibleColumn, elements} = this.filter(todoData, column, filter);
         const toDo = column['active'].numberIds.length;
 
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
-                <div className='app'>
-                    <AppHeader />
+                <div className={'app ' + theme}>
+                    <AppHeader
+                        themeChange={this.themeChange}
+                    />
                     <AddPanel onAdd={this.addElement}/>
                     <TodoList
                         todos = {elements}

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import {DragDropContext} from "react-beautiful-dnd";
 
 import AppHeader from "../app-header/app-header";
 import AddPanel from "../add-panel/add-panel";
 import TodoList from "../todo-list/todo-list";
+import TodoListFilter from "../todo-list__filter/todo-list__filter";
 
 import './app.css'
 
@@ -10,7 +12,9 @@ export default class App extends Component {
     maxID = 100;
 
     state = {
-        todoData: [],
+        todoData: [{label: "123", done: false, id: 1},
+            {label: "345", done: false, id: 2},
+            {label: "456", done: false, id: 3}],
         filter: 'all'
     };
 
@@ -90,6 +94,31 @@ export default class App extends Component {
         });
     }
 
+    onDragEnd = (result) => {
+        const {destination, source, draggableId} = result;
+        const {todoData} = this.state;
+
+        if (!destination) {
+            return;
+        }
+
+        if (destination.droppableId === source.droppableId &&
+            destination.index === source.index){
+            return;
+        }
+
+        const newTaskId = todoData.map((el) => el.id)
+
+        newTaskId.splice(source.index, 1);
+        newTaskId.splice(destination.index, 0, parseInt(draggableId));
+        const newTasks = todoData.forEach((el, index) => el.id = newTaskId[index]);
+        console.log(todoData)
+
+
+
+
+    }
+
     render() {
 
         const {todoData, filter} = this.state;
@@ -97,19 +126,26 @@ export default class App extends Component {
         const VisibleItems = this.filter(todoData, filter);
 
         return (
-            <div className='app'>
-                <AppHeader />
-                <AddPanel onAdd={this.addElement}/>
-                <TodoList
-                    todos = {VisibleItems}
-                    onDeleted = {this.deleteElement}
-                    onToggleDone = {this.onToggleDone}
-                    toDo = {todoLeft}
-                    filter = {filter}
-                    onFilterChange = {this.onFilterChange}
-                    clearCompleted = {this.clearCompleted}
-                />
-            </div>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <div className='app'>
+                    <AppHeader />
+                    <AddPanel onAdd={this.addElement}/>
+                    <TodoList
+                        todos = {VisibleItems}
+                        onDeleted = {this.deleteElement}
+                        onToggleDone = {this.onToggleDone}
+                        toDo = {todoLeft}
+                        filter = {filter}
+                        onFilterChange = {this.onFilterChange}
+                        clearCompleted = {this.clearCompleted}
+                    />
+                    <TodoListFilter
+                        filter = {filter}
+                        onFilterChange = {this.onFilterChange}
+                        className="mobile"
+                    />
+                </div>
+            </DragDropContext>
         );
     }
 }

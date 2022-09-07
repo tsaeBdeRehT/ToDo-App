@@ -1,17 +1,54 @@
-.todo-list__filter {
-    display: flex;
-    justify-content: space-between;
-    width: 35%;
+@media screen and (min-width: 749px){
+    .todo-list__filter {
+        display: flex;
+        justify-content: space-between;
+        width: 35%;
+    }
+
+    .button {
+        background: transparent;
+        border: none;
+        font-family: 'Josefin Sans', sans-serif;
+        color: whitesmoke;
+        cursor: pointer;
+    }
+
+    .button.active {
+        color: aqua;
+    }
+
+    .mobile {
+        display: none;
+    }
 }
 
-.button {
-    background: transparent;
-    border: none;
-    font-family: 'Josefin Sans', sans-serif;
-    color: whitesmoke;
-    cursor: pointer;
+@media screen and (max-width: 749px){
+    .todo-list__filter {
+        display: flex;
+        justify-content: space-between;
+        background-color: hsl(237, 14%, 26%);
+        height: 2.5rem;
+        border-radius: 0.3rem;
+        margin-top: 1rem;
+        padding: 0rem 4rem;
+    }
+
+    .button {
+        background: transparent;
+        border: none;
+        font-family: 'Josefin Sans', sans-serif;
+        color: whitesmoke;
+        cursor: pointer;
+    }
+
+    .button.active {
+        color: aqua;
+    }
+
+    .desktop {
+        display: none;
+    }
 }
 
-.button.active {
-    color: aqua;
-}
+
+

@@ -9,6 +9,7 @@ const TodoListFooter = ({toDo = 0, filter, onFilterChange, clearCompleted}) => {
             <TodoListFilter
                 filter = {filter}
                 onFilterChange = { onFilterChange }
+                className="desktop"
             />
             <button
                 className="button"

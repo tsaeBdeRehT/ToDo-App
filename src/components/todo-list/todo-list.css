@@ -2,6 +2,7 @@
     background-color: hsl(237, 14%, 26%);
     border-radius: 0.3rem;
     color: whitesmoke;
+    touch-action: none;
 }
 
 .todo-list__list {

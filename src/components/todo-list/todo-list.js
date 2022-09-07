@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Droppable, Draggable} from "react-beautiful-dnd";
 
 import ToDoListItem from "../todo-list__item/todo-list__item";
 import TodoListFooter from "../todo-list__footer/todo-list__footer";
@@ -7,11 +8,6 @@ import './todo-list.css'
 
 export default class TodoList extends Component {
 
-    constructor(props) {
-        super(props);
-        this.taskList = React.createRef();
-    }
-
     state = {
         dragElement: document.getElementById('root')
     }
@@ -19,19 +15,26 @@ export default class TodoList extends Component {
     render() {
         const { todos, onDeleted , onToggleDone, toDo, filter, onFilterChange, clearCompleted} = this.props;
         const {dragElement} = this.state;
-
-        const elements = todos.map((item) => {
+        const id = "1";
+        const elements = todos.map((item, index) => {
+            console.log(item, index)
 
             const {id, ...itemProps} = item;
-
+            const draggableId = String(id);
             return (
-                <li key={id} draggable="true">
-                    <ToDoListItem
-                        { ...itemProps }
-                        onDeleted = {() => onDeleted(id)}
-                        onToggleDone = {() => onToggleDone(id)}
-                    />
-                </li>
+                <Draggable draggableId={draggableId} index={index} key={id}>
+                    {(provided) => (
+                        <ToDoListItem
+                            { ...itemProps }
+                            {... provided.draggableProps}
+                            {... provided.dragHandleProps}
+                            innerRef={provided.innerRef}
+                            provided={provided}
+                            onDeleted = {() => onDeleted(id)}
+                            onToggleDone = {() => onToggleDone(id)}
+                        />
+                    )}
+                </Draggable>
             );
         });
 
@@ -40,43 +43,49 @@ export default class TodoList extends Component {
 
             const currentElement = ev.target.closest('li');
 
+
             if (currentElement !== dragElement ) {
-                const list = this.taskList.current;
+
                 const nextElement =
                     (currentElement === dragElement.nextElementSibling) ?
                         currentElement.nextElementSibling : currentElement;
-                list.insertBefore(dragElement, nextElement);
+
             }
         }
 
-        const onDragStart = (ev) => {
-            const el = ev.target.closest('li');
-            el.classList.add('selected');
-            this.setState({
-                dragElement: el
-            });
+
+
+        const onDragEnd = (result) => {
+            if (!result.destination){
+                return;
+            }
+
+            console.log(1);
         }
 
-        const onDragEnd = (ev) => {
-            const el = ev.target.closest('li');
-            el.classList.remove('selected');
-            this.setState({
-                dragElement: ""
-            });
-        }
+        const listTag = 'div'
 
         return (
             <div className="todo-list">
-                <ul
-                    className="todo-list__list"
-                    id="list"
-                    ref={this.taskList}
-                    onDragOver={onDragOver}
-                    onDragStart={onDragStart}
-                    onDragEnd={onDragEnd}
-                >
-                    {elements}
-                </ul>
+                <Droppable droppableId = {id}>
+                    {(provided) => (
+                        <ul className="todo-list__list"
+                            {...provided.droppableProps}
+                            ref = {provided.innerRef}
+                        >
+                            {elements}
+                            {provided.placeholder}
+                        </ul>
+                        // <div
+                        //     className="todo-list__list"
+                        //     innerRef = {provided.innerRef}
+                        //     {...provided.droppableProps}
+                        // >
+                        //     {elements}
+                        //     {provided.placeholder}
+                        // </div>
+                    )}
+                </Droppable>
                 <TodoListFooter
                     toDo = { toDo }
                     filter = { filter }

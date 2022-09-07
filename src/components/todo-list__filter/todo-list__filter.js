@@ -11,7 +11,7 @@ export default class TodoListFilter extends Component{
     ]
 
     render() {
-        const {filter = "all", onFilterChange} = this.props;
+        const {filter = "all", onFilterChange, className} = this.props;
 
         const buttons = this.buttons.map((item) => {
             const {name, label} = item;
@@ -30,7 +30,7 @@ export default class TodoListFilter extends Component{
         })
 
         return (
-            <div className="todo-list__filter">
+            <div className={"todo-list__filter " + className}>
                 {buttons}
             </div>
         );

@@ -13,16 +13,15 @@ export default class TodoList extends Component {
     }
 
     render() {
-        const { todos, onDeleted , onToggleDone, toDo, filter, onFilterChange, clearCompleted} = this.props;
+        const { todos, onDeleted , onToggleDone, toDo, filter, onFilterChange, clearCompleted, column} = this.props;
         const {dragElement} = this.state;
         const id = "1";
-        const elements = todos.map((item, index) => {
-            console.log(item, index)
+        const elements = column.numberIds.map((item, index) => {
 
-            const {id, ...itemProps} = item;
-            const draggableId = String(id);
+            const {id, ...itemProps} = todos[item];
+
             return (
-                <Draggable draggableId={draggableId} index={index} key={id}>
+                <Draggable draggableId={id} index={index} key={id}>
                     {(provided) => (
                         <ToDoListItem
                             { ...itemProps }
@@ -67,7 +66,7 @@ export default class TodoList extends Component {
 
         return (
             <div className="todo-list">
-                <Droppable droppableId = {id}>
+                <Droppable droppableId = {column.id}>
                     {(provided) => (
                         <ul className="todo-list__list"
                             {...provided.droppableProps}
